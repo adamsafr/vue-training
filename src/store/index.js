@@ -33,14 +33,40 @@ export default new Vuex.Store({
         liked: false
       });
     },
+    UPDATE_CARD(state, { uuid, title, description }) {
+      const index = state.cards.findIndex(card => card.uuid === uuid);
+
+      if (index !== -1) {
+        state.cards[index].title = title;
+        state.cards[index].description = description;
+      }
+    },
     TOGGLE_CARD_LIKE(state, { uuid }) {
       for (const card of state.cards) {
         if (card.uuid === uuid) {
           card.liked = !card.liked;
         }
       }
+    },
+    DELETE_CARD(state, { uuid }) {
+      const index = state.cards.findIndex(card => card.uuid === uuid);
+
+      if (index !== -1) {
+        state.cards.splice(index, 1);
+      }
     }
   },
   actions: {},
-  modules: {}
+  modules: {},
+  getters: {
+    getCard: state => uuid => {
+      for (const card of state.cards) {
+        if (card.uuid === uuid) {
+          return card;
+        }
+      }
+
+      return null;
+    }
+  }
 });

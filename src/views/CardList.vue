@@ -14,10 +14,14 @@
         <b-row>
           <b-col>
             <div class="h2 mb-0">
-              <b-icon icon="pencil-square" class="clickable"></b-icon>
+              <b-icon icon="trash" class="clickable" @click="onDeleteClick(card.uuid)"></b-icon>
             </div>
           </b-col>
-          <b-col></b-col>
+          <b-col>
+            <div class="h2 mb-0">
+              <b-icon icon="pencil-square" class="clickable" @click="onEditClick(card.uuid)"></b-icon>
+            </div>
+          </b-col>
           <b-col>
             <div class="h2 mb-0">
               <b-icon
@@ -43,8 +47,14 @@ export default {
     ...mapState(['cards'])
   },
   methods: {
+    onDeleteClick(uuid) {
+      this.$store.commit('DELETE_CARD', { uuid });
+    },
     onHeartClick(uuid) {
       this.$store.commit('TOGGLE_CARD_LIKE', { uuid });
+    },
+    onEditClick(uuid) {
+      this.$router.push({ name: 'EditCard', params: { uuid } });
     }
   }
 };
