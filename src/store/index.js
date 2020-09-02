@@ -8,15 +8,17 @@ export default new Vuex.Store({
   state: {
     cards: [
       {
-        id: uuid(),
+        uuid: uuid(),
         title: 'Card Title',
         description: `Some quick example text to build on the card title and make up the bulk of the card's content.`,
+        createdAt: new Date(),
         liked: false
       },
       {
-        id: uuid(),
+        uuid: uuid(),
         title: 'Card Title 2',
         description: `2 Some quick example text to build on the card title and make up the bulk of the card's content.`,
+        createdAt: new Date(),
         liked: false
       }
     ]
@@ -24,11 +26,19 @@ export default new Vuex.Store({
   mutations: {
     ADD_CARD(state, { title, description }) {
       state.cards.push({
-        id: uuid(),
+        uuid: uuid(),
         title,
         description,
+        createdAt: new Date(),
         liked: false
       });
+    },
+    TOGGLE_CARD_LIKE(state, { uuid }) {
+      for (const card of state.cards) {
+        if (card.uuid === uuid) {
+          card.liked = !card.liked;
+        }
+      }
     }
   },
   actions: {},
