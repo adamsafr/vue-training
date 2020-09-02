@@ -29,7 +29,7 @@
         />
 
         <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="reset" variant="danger" @click.prevent="onCancelClick">Cancel</b-button>
       </b-form>
     </b-row>
   </b-container>
@@ -53,10 +53,13 @@ export default {
   },
   mounted() {
     const { title, description } = this.card;
-
     this.form = { title, description };
   },
   methods: {
+    onCancelClick() {
+      this.form = this.resetForm();
+      this.$router.push({ name: 'CardList' });
+    },
     onSubmit() {
       const card = this.card;
 
