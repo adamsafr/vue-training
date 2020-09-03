@@ -1,31 +1,41 @@
 <template>
-  <b-form @submit.prevent="onSubmit">
-    <b-form-group id="title-group" label="Title:" label-for="title">
-      <b-form-input
-        v-model="form.title"
-        id="title"
-        type="text"
-        required
-        placeholder="Enter title"
-        :value="form.title"
-      ></b-form-input>
-    </b-form-group>
+  <form @submit.prevent="onSubmit">
+    <div class="field">
+      <label class="label" for="title">Title</label>
+      <div class="control">
+        <input
+          v-model="form.title"
+          id="title"
+          class="input"
+          type="text"
+          placeholder="Enter title"
+        />
+      </div>
+    </div>
 
-    <b-form-textarea
-      v-model="form.description"
-      id="description"
-      required
-      placeholder="Enter description"
-      rows="3"
-      max-rows="6"
-      :value="form.description"
-    />
+    <div class="field">
+      <label class="label" for="description">Description</label>
+      <div class="control">
+        <textarea
+          v-model="form.description"
+          id="description"
+          class="textarea"
+          placeholder="Enter description"
+        ></textarea>
+      </div>
+    </div>
 
-    <b-button type="submit" variant="primary">Submit</b-button>
-    <b-button type="reset" variant="danger" @click.prevent="onCancelClick"
-      >Cancel</b-button
-    >
-  </b-form>
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+      <div class="control">
+        <button @click.prevent="onCancelClick" class="button is-link is-light">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script>

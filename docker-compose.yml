@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     nodejs:
-        container_name: vue_basic_nodejs
+        container_name: vue_training_nodejs
         build:
             context: ./
             dockerfile: ./docker/nodejs/Dockerfile

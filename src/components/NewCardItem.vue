@@ -1,19 +1,18 @@
 <template>
-  <b-card style="max-width: 20rem;" class="mb-2">
-    <b-row>
-      <b-col></b-col>
-      <b-col>
-        <div class="h2 mb-0">
-          <b-icon
-            icon="plus-square-fill"
+  <div class="column is-one-third">
+    <div class="card bm--card-equal-height">
+      <div class="card-content has-icon-centered">
+        <div class="centered-icon">
+          <font-awesome-icon
+            icon="plus-square"
+            size="3x"
             class="clickable"
             @click="onAddClick()"
-          ></b-icon>
+          />
         </div>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
-  </b-card>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,4 +26,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.clickable:hover {
+  cursor: pointer;
+}
+.has-icon-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .centered-icon {
+    max-width: 50%;
+  }
+}
+</style>

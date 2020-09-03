@@ -1,9 +1,9 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
+  <section class="section">
+    <div class="container">
       <CardForm :form="form" @submitted="onSubmit" />
-    </b-row>
-  </b-container>
+    </div>
+  </section>
 </template>
 
 <script>

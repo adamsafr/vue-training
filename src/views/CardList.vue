@@ -1,11 +1,13 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
-      <NewCardItem />
+  <section class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        <NewCardItem />
 
-      <CardItem v-for="card in cards" :key="card.uuid" :card="card" />
-    </b-row>
-  </b-container>
+        <CardItem v-for="card in cards" :key="card.uuid" :card="card" />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
