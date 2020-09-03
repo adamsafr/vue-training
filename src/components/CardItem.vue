@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: 'Card',
+  name: 'CardItem',
   props: {
     card: {
       type: Object,
