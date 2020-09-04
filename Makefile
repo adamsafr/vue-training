@@ -1,4 +1,4 @@
-.PHONY: up down restart rebuild vue yarn
+.PHONY: up down restart rebuild vue yarn set-up-project
 
 cmd=""
 
@@ -19,3 +19,8 @@ vue:
 
 yarn:
 	docker-compose exec nodejs yarn $(cmd)
+
+set-up-project:
+	docker-compose build
+	docker-compose run --rm nodejs yarn install
+	docker-compose up -d

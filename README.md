@@ -1,24 +1,23 @@
-# html
+# Vue.js cards app
+
+You need to install Docker and Docker-compose.
 
 ## Project setup
 ```
-yarn install
+make set-up-project
 ```
 
-### Compiles and hot-reloads for development
+### Use yarn
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
+make yarm cmd=""
 ```
 
-### Lints and fixes files
+### Start containers
 ```
-yarn lint
+make up
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Stop containers
+```
+make down
+```
