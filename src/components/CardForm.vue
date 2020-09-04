@@ -11,6 +11,11 @@
           placeholder="Enter title"
         />
       </div>
+      <template v-if="$v.form.title.$error">
+        <p class="help is-danger" v-if="!$v.form.title.required">
+          This title is empty
+        </p>
+      </template>
     </div>
 
     <div class="field">
@@ -23,11 +28,16 @@
           placeholder="Enter description"
         ></textarea>
       </div>
+      <template v-if="$v.form.description.$error">
+        <p class="help is-danger" v-if="!$v.form.description.required">
+          Description is empty
+        </p>
+      </template>
     </div>
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Submit</button>
+        <button class="button is-link" :disabled="$v.$anyError">Submit</button>
       </div>
       <div class="control">
         <button @click.prevent="onCancelClick" class="button is-link is-light">
@@ -39,6 +49,8 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators';
+
 export default {
   name: 'CardForm',
   props: {
@@ -47,8 +59,20 @@ export default {
       required: true
     }
   },
+  validations: {
+    form: {
+      title: { required },
+      description: { required }
+    }
+  },
   methods: {
     onSubmit() {
+      this.$v.$touch();
+
+      if (this.$v.$invalid) {
+        return;
+      }
+
       this.$emit('submitted', {
         ...this.form
       });
