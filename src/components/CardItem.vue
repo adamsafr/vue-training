@@ -44,7 +44,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import { DELETE_CARD, TOGGLE_CARD_LIKE } from '../store/mutation-types';
+import { DELETE_CARD, TOGGLE_CARD_LIKE } from '@/store/mutation-types';
 
 export default {
   name: 'CardItem',

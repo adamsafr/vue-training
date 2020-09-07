@@ -12,8 +12,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import CardItem from '../components/CardItem';
-import NewCardItem from '../components/NewCardItem';
+import CardItem from '@/components/CardItem';
+import NewCardItem from '@/components/NewCardItem';
 
 export default {
   name: 'CardList',
