@@ -3,12 +3,9 @@
     <div class="card bm--card-equal-height">
       <div class="card-content has-icon-centered">
         <div class="centered-icon">
-          <font-awesome-icon
-            icon="plus-square"
-            size="3x"
-            class="clickable"
-            @click="onAddClick()"
-          />
+          <router-link :to="{ name: 'CreateCard' }">
+            <font-awesome-icon icon="plus-square" size="3x" class="clickable" />
+          </router-link>
         </div>
       </div>
     </div>
@@ -17,12 +14,7 @@
 
 <script>
 export default {
-  name: 'NewCardItem',
-  methods: {
-    onAddClick() {
-      this.$router.push({ name: 'CreateCard' });
-    }
-  }
+  name: 'NewCardItem'
 };
 </script>
 
