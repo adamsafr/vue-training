@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { uuid, saveStatePlugin } from '@/utils';
+import { uuid, saveStatePlugin, normalizeStateData } from '@/utils';
 import defaultCards from '@/defaultCards';
 import {
   ADD_CARD,
@@ -11,57 +11,49 @@ import {
 
 Vue.use(Vuex);
 
-const cards = JSON.parse(localStorage.getItem('cards')) || defaultCards;
+const normalized =
+  JSON.parse(localStorage.getItem('stateData')) ||
+  normalizeStateData(defaultCards);
 
 export default new Vuex.Store({
   plugins: [saveStatePlugin],
   state: {
-    cards
+    ...normalized
   },
   mutations: {
     [ADD_CARD](state, { title, description }) {
-      state.cards.push({
+      const card = {
         uuid: uuid(),
         title,
         description,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
         liked: false
-      });
+      };
+
+      Vue.set(state.cardsById, card.uuid, card);
+      state.cardIds.push(card.uuid);
     },
     [UPDATE_CARD](state, { uuid, title, description }) {
-      const index = state.cards.findIndex(card => card.uuid === uuid);
-
-      if (index !== -1) {
-        state.cards[index].title = title;
-        state.cards[index].description = description;
-      }
+      state.cardsById[uuid].title = title;
+      state.cardsById[uuid].description = description;
     },
     [TOGGLE_CARD_LIKE](state, { uuid }) {
-      for (const card of state.cards) {
-        if (card.uuid === uuid) {
-          card.liked = !card.liked;
-        }
-      }
+      state.cardsById[uuid].liked = !state.cardsById[uuid].liked;
     },
     [DELETE_CARD](state, { uuid }) {
-      const index = state.cards.findIndex(card => card.uuid === uuid);
+      Vue.delete(state.cardsById, uuid);
+
+      const index = state.cardIds.findIndex(value => value === uuid);
 
       if (index !== -1) {
-        state.cards.splice(index, 1);
+        state.cardIds.splice(index, 1);
       }
     }
   },
   actions: {},
   modules: {},
   getters: {
-    getCard: state => uuid => {
-      for (const card of state.cards) {
-        if (card.uuid === uuid) {
-          return card;
-        }
-      }
-
-      return null;
-    }
+    cards: state => state.cardIds.map(uuid => state.cardsById[uuid]),
+    getCard: state => uuid => state.cardsById[uuid]
   }
 });
