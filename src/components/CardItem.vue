@@ -43,6 +43,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+import { DELETE_CARD, TOGGLE_CARD_LIKE } from '../store/mutation-types';
+
 export default {
   name: 'CardItem',
   props: {
@@ -52,11 +55,15 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      deleteCard: DELETE_CARD,
+      toggleCardLike: TOGGLE_CARD_LIKE
+    }),
     onDeleteClick(uuid) {
-      this.$store.commit('DELETE_CARD', { uuid });
+      this.deleteCard({ uuid });
     },
     onHeartClick(uuid) {
-      this.$store.commit('TOGGLE_CARD_LIKE', { uuid });
+      this.toggleCardLike({ uuid });
     },
     onEditClick(uuid) {
       this.$router.push({ name: 'EditCard', params: { uuid } });

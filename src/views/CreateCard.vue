@@ -7,16 +7,21 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import CardForm from '../components/CardForm';
 import formMixin from '../mixins/formMixin';
+import { ADD_CARD } from '../store/mutation-types';
 
 export default {
   name: 'CreateCard',
   mixins: [formMixin],
   components: { CardForm },
   methods: {
+    ...mapMutations({
+      addCard: ADD_CARD
+    }),
     onSubmit() {
-      this.$store.commit('ADD_CARD', {
+      this.addCard({
         title: this.form.title,
         description: this.form.description
       });

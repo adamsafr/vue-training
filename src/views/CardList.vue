@@ -19,7 +19,9 @@ export default {
   name: 'CardList',
   components: { CardItem, NewCardItem },
   computed: {
-    ...mapState(['cards'])
+    ...mapState({
+      cards: 'cards'
+    })
   }
 };
 </script>
