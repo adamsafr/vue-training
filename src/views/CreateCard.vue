@@ -8,9 +8,9 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import CardForm from '../components/CardForm';
-import formMixin from '../mixins/formMixin';
-import { ADD_CARD } from '../store/mutation-types';
+import CardForm from '@/components/CardForm';
+import formMixin from '@/mixins/formMixin';
+import { ADD_CARD } from '@/store/mutation-types';
 
 export default {
   name: 'CreateCard',

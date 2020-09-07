@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { uuid, saveStatePlugin } from '../utils';
-import defaultCards from '../defaultCards';
+import { uuid, saveStatePlugin } from '@/utils';
+import defaultCards from '@/defaultCards';
 import {
   ADD_CARD,
   UPDATE_CARD,
