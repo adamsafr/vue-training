@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import CardItem from '@/components/CardItem';
 import NewCardItem from '@/components/NewCardItem';
 
@@ -19,9 +19,7 @@ export default {
   name: 'CardList',
   components: { CardItem, NewCardItem },
   computed: {
-    ...mapState({
-      cards: 'cards'
-    })
+    ...mapGetters(['cards'])
   }
 };
 </script>

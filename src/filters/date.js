@@ -8,6 +8,10 @@ export default value => {
 
   const diffMinutes = diffMs / 1000 / 60;
 
+  if (diffMinutes < 1) {
+    return 'just now';
+  }
+
   if (diffMinutes < 60) {
     return timeAgo(diffMinutes, 'minute');
   }
